@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Panorama Viewer</title>
+  <title>Panorama Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- PSV v4.0.5 CSS from CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photo-sphere-viewer/4.0.5/photo-sphere-viewer.min.css">
+  <!-- Photo Sphere Viewer v4.2.0 CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.css">
   <style>
     html, body {
       margin: 0;
@@ -20,31 +20,28 @@
 </head>
 <body>
 
-  <!-- Container for the panorama -->
   <div id="viewer"></div>
 
-  <!-- PSV and Three.js from CDNJS (fully working) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/photo-sphere-viewer/4.0.5/photo-sphere-viewer.min.js"></script>
+  <!-- Dependencies: Three.js and PSV 4.2.0 -->
+  <script src="https://unpkg.com/three@0.121.1/build/three.min.js"></script>
+  <script src="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.js"></script>
 
   <script>
-    // Initialize the viewer
     const viewer = new PhotoSphereViewer.Viewer({
       container: document.getElementById('viewer'),
-      panorama: 'https://github.com/prabha3d/SaiPanorama/blob/main/Pano_Living.jpg',
-      caption: 'Custom 360° Viewer',
+      panorama: 'https://photo-sphere-viewer.js.org/assets/sphere.jpg',
+      caption: 'Simple 360 Viewer',
       defaultYaw: '180deg',
       navbar: [
         'autorotate',
         'zoom',
-        'fullscreen',
-        'gyroscope',
         'download',
-        'markers'
+        'markers',
+        'gyroscope',
+        'fullscreen'
       ]
     });
 
-    // Add marker once ready
     viewer.once('ready', () => {
       viewer.addMarker({
         id: 'marker1',
@@ -58,9 +55,8 @@
       });
     });
 
-    // Click event on marker
     viewer.on('select-marker', (e) => {
-      alert('Marker clicked: ' + e.marker.id);
+      alert('You clicked marker: ' + e.marker.id);
     });
   </script>
 
