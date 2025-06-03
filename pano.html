@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>Panorama Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Photo Sphere Viewer v4.2.0 CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.css">
+  <!-- Photo Sphere Viewer v4.8.1 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.css">
   <style>
     html, body {
       margin: 0;
@@ -22,9 +22,10 @@
 
   <div id="viewer"></div>
 
-  <!-- Dependencies: Three.js and PSV 4.2.0 -->
-  <script src="https://unpkg.com/three@0.121.1/build/three.min.js"></script>
-  <script src="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.js"></script>
+  <!-- Dependencies: Three.js, uEvent, and Photo Sphere Viewer -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.js"></script>
 
   <script>
     const viewer = new PhotoSphereViewer.Viewer({
