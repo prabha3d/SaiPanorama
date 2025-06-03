@@ -1,14 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>A-Frame 360 Viewer</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-sky src="https://photo-sphere-viewer.js.org/assets/sphere.jpg" rotation="0 -130 0"></a-sky>
-      <a-camera wasd-controls-enabled="true" look-controls-enabled="true"></a-camera>
-    </a-scene>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Panorama Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.css">
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #viewer {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="viewer"></div>
+
+  <!-- JS Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/domevent@0.1.0/browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.js"></script>
+
+  <script>
+    const viewer = new PhotoSphereViewer.Viewer({
+      container: document.getElementById('viewer'),
+      panorama: 'https://photo-sphere-viewer.js.org/assets/sphere.jpg',
+      caption: 'Simple 360 Viewer',
+      defaultYaw: '180deg',
+      navbar: [
+        'autorotate',
+        'zoom',
+        'download',
+        'markers',
+        'gyroscope',
+        'fullscreen'
+      ]
+    });
+
+    viewer.once('ready', () => {
+      viewer.addMarker({
+        id: 'marker1',
+        longitude: 0.2,
+        latitude: 0.1,
+        image: 'https://photo-sphere-viewer.js.org/assets/pin-red.png',
+        width: 32,
+        height: 32,
+        tooltip: 'Click me!',
+        anchor: 'bottom center'
+      });
+    });
+
+    viewer.on('select-marker', (e) => {
+      alert('You clicked marker: ' + e.marker.id);
+    });
+  </script>
+  
+
+</body>
 </html>
