@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <title>Custom Panorama Viewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Photo Sphere Viewer v4 -->
+  <!-- Photo Sphere Viewer v4 CSS -->
   <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.css">
   <style>
-    body, html {
+    html, body {
       margin: 0;
-      padding: 0;
       height: 100%;
       overflow: hidden;
     }
     #viewer {
       width: 100%;
-      height: 100vh;
+      height: 100%;
     }
   </style>
 </head>
@@ -23,18 +22,16 @@
 
   <div id="viewer"></div>
 
-  <!-- Dependencies -->
+  <!-- Three.js & Photo Sphere Viewer v4 -->
   <script src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
   <script src="https://unpkg.com/photo-sphere-viewer@4.2.0/dist/photo-sphere-viewer.min.js"></script>
 
-  <!-- Panorama Viewer Script -->
   <script>
     const viewer = new PhotoSphereViewer.Viewer({
-      panorama: 'https://photo-sphere-viewer.js.org/assets/sphere.jpg',
       container: document.getElementById('viewer'),
-      caption: 'Example 360° Panorama',
+      panorama: 'https://github.com/prabha3d/SaiPanorama/blob/main/Pano_Living.jpg',
+      caption: 'Custom 360° Panorama',
       defaultYaw: '180deg',
-      loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
       navbar: [
         'autorotate',
         'zoom',
@@ -45,6 +42,7 @@
       ]
     });
 
+    // Add marker after ready
     viewer.once('ready', () => {
       viewer.addMarker({
         id: 'marker1',
@@ -58,9 +56,11 @@
       });
     });
 
+    // Marker click event
     viewer.on('select-marker', (e) => {
       alert(`You clicked on marker: ${e.marker.id}`);
     });
   </script>
+
 </body>
 </html>
