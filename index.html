@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Panorama Viewer1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.css">
+  <meta charset="utf-8">
+  <title>PanOrama Viewer</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <style>
     html, body {
-      margin: 0;
       height: 100%;
-      overflow: hidden;
+      margin: 0;
     }
-    #viewer {
+    #panorama {
       width: 100%;
       height: 100%;
     }
@@ -20,51 +18,20 @@
 </head>
 <body>
 
-  <div id="viewer"></div>
+<div id="panorama"></div>
 
-  <!-- JS Dependencies -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.121.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uevent@2/browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/domevent@0.1.0/browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4.8.1/dist/photo-sphere-viewer.min.js"></script>
-
-  <script>
-    const viewer = new PhotoSphereViewer.Viewer({
-      container: document.getElementById('viewer'),
-      panorama: 'Pano_Living.jpg',
-      caption: 'Simple 360 Viewer',
-      // defaultYaw: '180deg',
-      navbar: [
-        'autorotate',
-        'zoom',
-        'download',
-        'markers',
-        'gyroscope',
-        'fullscreen'
-      ]
-    });
-
-    viewer.once('ready', () => {
-      viewer.addMarker({
-        id: 'marker1',
-        longitude: 0.2,
-        latitude: 0.1,
-        image: 'https://photo-sphere-viewer.js.org/assets/pin-red.png',
-        width: 32,
-        height: 32,
-        tooltip: 'Click me!',
-        anchor: 'bottom center'
-      });
-    });
-
-    viewer.on('select-marker', (e) => {
-      alert('You clicked marker: ' + e.marker.id);
-    });
-  </script>
+<script>
+  pannellum.viewer('panorama', {
+    type: "equirectangular",
+    panorama: "Pano_Living.jpg",
+    autoLoad: true,
+    compass: false,
+    title: "Pannellum Viewer",
+    pitch: 0,
+    yaw: 180,
+    hfov: 110
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
