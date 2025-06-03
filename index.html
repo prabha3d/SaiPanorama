@@ -2,48 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Marzipano Panorama Viewer</title>
+  <title>Pannellum Viewer</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <style>
     html, body {
       height: 100%;
       margin: 0;
     }
-    #pano {
+    #panorama {
       width: 100%;
       height: 100%;
     }
   </style>
-  <script src="https://www.marzipano.net/demos/vendor/marzipano.js"></script>
 </head>
 <body>
 
-<div id="pano"></div>
+<div id="panorama"></div>
 
 <script>
-  // Create viewer
-  const viewer = new Marzipano.Viewer(document.getElementById('pano'));
-
-  // Define the source (your panorama image)
-  const source = Marzipano.ImageUrlSource.fromString(
-    "https://github.com/prabha3d/SaiPanorama/blob/main/Pano_Living.jpg"
-  );
-
-  // Define geometry
-  const geometry = new Marzipano.EquirectGeometry([{ width: 4000 }]);
-
-  // Define view (yaw/pitch)
-  const limiter = Marzipano.RectilinearView.limit.traditional(1024, 100*Math.PI/180);
-  const view = new Marzipano.RectilinearView({ yaw: Math.PI }, limiter);
-
-  // Create scene
-  const scene = viewer.createScene({
-    source: source,
-    geometry: geometry,
-    view: view,
-    pinFirstLevel: true
+  pannellum.viewer('panorama', {
+    type: "equirectangular",
+    panorama: "Pano_Living.jpg",
+    autoLoad: true,
+    compass: false,
+    title: "Pannellum Viewer",
+    pitch: 0,
+    yaw: 180,
+    hfov: 110
   });
-
-  scene.switchTo();
 </script>
 
 </body>
