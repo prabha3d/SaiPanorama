@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Panorama Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Photo Sphere Viewer CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #viewer {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Panorama Viewer Container -->
+  <div id="viewer"></div>
+
+  <!-- Dependencies -->
+  <script src="https://unpkg.com/three@0.157.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/photo-sphere-viewer@5/dist/photo-sphere-viewer.js"></script>
+
+  <!-- Panorama Viewer Script -->
+  <script>
+    const viewer = new PhotoSphereViewer.Viewer({
+      container: document.getElementById('viewer'),
+      panorama: 'https://photo-sphere-viewer.js.org/assets/sphere.jpg', // Replace with your 360 image URL
+      loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
+      caption: 'Example 360° Panorama',
+      defaultYaw: '180deg',
+      touchmoveTwoFingers: true,
+      mousewheelCtrlKey: true,
+      navbar: [
+        'zoom',
+        'move',
+        'download',
+        'markers',
+        'gyroscope',
+        'fullscreen'
+      ]
+    });
+
+    // Add a clickable marker
+    viewer.once('ready', () => {
+      viewer.addMarker({
+        id: 'marker1',
+        longitude: 0.2,
+        latitude: 0.1,
+        image: 'https://photo-sphere-viewer.js.org/assets/pin-red.png',
+        width: 32,
+        height: 32,
+        tooltip: 'Click me!',
+        anchor: 'bottom center'
+      });
+    });
+
+    // Handle marker click
+    viewer.on('select-marker', (e) => {
+      alert(`You clicked on marker: ${e.marker.id}`);
+    });
+  </script>
+</body>
+</html>
